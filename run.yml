@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+    - import_tasks: tasks/essential.yml
+  
+  roles:
+    #
+    # Basics
+    #
+    - role: docker
+      tags: 
+        - docker

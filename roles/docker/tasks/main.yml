@@ -1,0 +1,47 @@
+---
+- include_vars: Ubuntu.yml
+
+- name: Install required system packages
+  package:
+    state: present
+    name: "{{ docker_deps }}"
+  
+- name: Install Docker (Ubuntu)
+  block:
+  - name: Add Docker GPG apt Key
+    apt_key:
+      url: https://download.docker.com/linux/debian/gpg
+      state: present
+
+  - name: Add Docker Repository
+    apt_repository:
+      repo: "deb [arch=amd64] https://download.docker.com/linux/debian focal stable"
+      state: present
+
+- name: Update apt and install docker-ce
+  apt:
+    update_cache: yes
+    name: "{{ docker_packages }}"
+    state: present
+
+- name: Ensure group docker exists
+  group:
+    name: docker
+    state: present
+
+- name: Add user "{{ username }}" to group docker
+  user:
+    name: '{{ username }}'
+    groups:
+      - docker
+    append: yes
+
+- name: Install Docker Module for Python
+  pip:
+    name: docker
+
+- name: Make sure Docker is running and enabled
+  service:
+    name: docker
+    state: started
+    enabled: yes

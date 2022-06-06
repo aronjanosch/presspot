@@ -1,0 +1,32 @@
+#
+# Networks
+#
+
+
+#
+# Misc
+#
+username: aron
+timezone: Europe/Amsterdam
+docker_dir: /opt/docker/data
+guid: "1000"
+uuid: "1000"
+colorscheme: nord
+
+
+#
+# Essential Packages
+#
+
+packages:
+  - neofetch
+  - htop
+  - tmux
+  - git
+  - neovim
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - net-tools
+  - rsync
+  - fish
