@@ -15,7 +15,7 @@
 
   - name: Add Docker Repository
     apt_repository:
-      repo: "deb [arch=amd64] https://download.docker.com/linux/debian focal stable"
+      repo: "deb [arch=amd64] https://download.docker.com/linux/debian buster stable"
       state: present
 
 - name: Update apt and install docker-ce

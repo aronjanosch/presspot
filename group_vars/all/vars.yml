@@ -30,3 +30,13 @@ packages:
   - net-tools
   - rsync
   - fish
+
+#
+# Enable Containers
+#
+
+enable_nginx: true
+enable_letsencrypt: false
+enable_mitm: true
+enable_wordpress: true
+

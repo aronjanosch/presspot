@@ -12,3 +12,34 @@
     - role: docker
       tags: 
         - docker
+
+    - role: containers/portainer
+      tags:
+        - portainer
+        - containers
+      
+    - role: containers/nginx-proxy
+      tags:
+        - proxies
+        - nginx
+        - containers
+      when: enable_nginx
+
+    - role: containers/letsencrypt
+      tags:
+        - letsencrypt
+        - containers
+      when: enable_letsencrypt
+    
+    - role: containers/mitm-proxy
+      tags:
+        - mitm
+        - proxies
+        - containers
+      when: enable_mitm
+    
+    - role: containers/wordpress
+      tags:
+        - wordpress
+        - containers
+      when: enable_wordpress

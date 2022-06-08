@@ -1,0 +1,14 @@
+---
+- name: Create the {{ container_name }} container
+  docker_container:
+    name: "{{ container_name }}"
+    image: "nginx"
+    pull: yes
+    state: 'started'
+    volumes:
+      - "{{ docker_dir }}/{{ container_name }}/conf.d:/etc/nginx/conf.d"
+      - "{{ docker_dir }}/{{ container_name }}/nginx.conf:/etc/nginx/nginx.conf"
+    ports:
+      - "80:80"
+      - "443:443"
+    restart_policy: unless-stopped

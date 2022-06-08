@@ -1,0 +1,23 @@
+---
+- name: Create the {{ container_name }} container
+  docker_container:
+    name: "{{ container_name }}"
+    image: "linuxserver/letsencrypt:latest"
+    pull: yes
+    state: 'started'
+    env:
+      "PUID": "{{ uuid }}"
+      "PGID": "{{ guid }}"
+      "TZ": "{{ timezone }}"
+      "URL": 0rn.de
+      "SUBDOMAINS": "wildcard,"
+      "VALIDATIONS": "dns"
+      "DNSPLUGIN": ""
+      "EMAIL": "aron.wiederkehr@gmail.com"
+    volumes:
+      - "{{ docker_dir }}/{{ container_name }}:/config"
+    ports:
+      - "443:443"
+      - "80:80"
+    restart_policy: unless-stopped
+    

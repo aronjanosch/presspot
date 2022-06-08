@@ -1,0 +1,41 @@
+---
+- name: Create a wordpress network
+  docker_network:
+      name: wordpress_network
+
+- name: Make sure the MYSQL container is created and running
+  docker_container:
+      name: 'wordpress-mysql'
+      image: 'mysql:latest'
+      pull: yes
+      networks:
+          - name: wordpress_network
+      state: 'started'
+      env:
+          'MYSQL_ROOT_PASSWORD': '{{ mysql_root_password }}'
+          'MYSQL_DATABASE': '{{ mysql_db }}'
+          'MYSQL_USER': '{{ mysql_user }}'
+          'MYSQL_PASSWORD': '{{ mysql_password }}'
+      volumes:
+          - '{{ docker_dir }}/{{ container_name }}/mysql:/var/lib/mysql'
+      restart_policy: unless-stopped
+
+- name: Create the {{ container_name }} container
+  docker_container:
+    name: "{{ container_name }}"
+    image: "wordpress:latest"
+    pull: yes
+    networks:
+      - name: bridge
+      - name: wordpress_network
+    state: 'started'
+    env:
+        'MYSQL_DATABASE': '{{ mysql_db }}'
+        'MYSQL_USER': '{{ mysql_user }}'
+        'MYSQL_PASSWORD': '{{ mysql_password }}'
+        'MYSQL_HOST': 'wordpress-mysql'
+    volumes:
+      - '{{ docker_dir }}/{{ container_name }}:/var/www/html'
+    ports:
+      - "8888:80"
+    restart_policy: unless-stopped

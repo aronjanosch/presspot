@@ -1,0 +1,12 @@
+---
+- name: Create the {{ container_name }} container
+  docker_container:
+    name: "{{ container_name }}"
+    image: "mitmproxy/mitmproxy"
+    pull: yes
+    state: 'started'
+    volumes:
+      - "{{ docker_dir }}/{{ container_name }}:/home/mitmproxy/.mitmproxy"
+    ports:
+      - "8080:8080"
+    restart_policy: unless-stopped

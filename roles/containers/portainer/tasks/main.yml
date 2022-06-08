@@ -1,0 +1,14 @@
+---
+- name: Create the {{ container_name }} container
+  docker_container:
+    name: "{{ container_name }}"
+    image: "portainer/portainer-ce:latest"
+    pull: yes
+    state: 'started'
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "{{ docker_dir }}/{{ container_name }}:/data"
+    ports:
+      - "8000:8000"
+      - "9443:9443"
+    restart_policy: unless-stopped
