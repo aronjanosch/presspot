@@ -9,10 +9,9 @@
       "PUID": "{{ uuid }}"
       "PGID": "{{ guid }}"
       "TZ": "{{ timezone }}"
-      "URL": 0rn.de
+      "URL": wordpress.0rn.de
       "SUBDOMAINS": "wildcard,"
-      "VALIDATIONS": "dns"
-      "DNSPLUGIN": ""
+      "VALIDATIONS": "http"
       "EMAIL": "aron.wiederkehr@gmail.com"
     volumes:
       - "{{ docker_dir }}/{{ container_name }}:/config"

@@ -1,12 +1,35 @@
 ---
+- name: Copy script
+  ansible.builtin.copy:
+    src: roles/containers/mitm-proxy/scripts/reverseproxy.py
+    dest: "{{ docker_dir }}/{{ container_name }}/reverseproxy.py"
+
+- name: upload the scripts directory to the docker host
+  synchronize: src=roles/containers/mitm-proxy/scripts dest=/tmp
+
+- name: Build mitmproxy image
+  docker_image:
+    name: mitmproxy-logger
+    build:
+      path: "/tmp/scripts"
+      dockerfile: Dockerfile
+    tag: ex3
+    state: present
+    source: build
+
+
+
 - name: Create the {{ container_name }} container
   docker_container:
     name: "{{ container_name }}"
-    image: "mitmproxy/mitmproxy"
-    pull: yes
+    hostname: "mitmproxy"
+    image: mitmproxy-logger:ex3
     state: 'started'
     volumes:
-      - "{{ docker_dir }}/{{ container_name }}:/home/mitmproxy/.mitmproxy"
+      - "{{ docker_dir }}/{{ container_name }}:/scripts"
+      - "{{ docker_dir }}/{{ container_name }}/logs:/logs"
+    networks:
+      - name: honeynet
     ports:
       - "8080:8080"
     restart_policy: unless-stopped

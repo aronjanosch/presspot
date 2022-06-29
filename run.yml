@@ -25,6 +25,13 @@
         - containers
       when: enable_nginx
 
+    - role: containers/nginx-dummy
+      tags:
+        - nginx
+        - dummy
+        - containers
+      when: enable_nginx_dummy
+
     - role: containers/letsencrypt
       tags:
         - letsencrypt

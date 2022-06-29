@@ -1,0 +1,4 @@
+docker run --rm -it --network honeynet --hostname mitmproxy -p 8080:8080 mitmproxy/mitmproxy mitmdump --mode reverse:http://wordpress
+
+
+docker run --rm -it --network honeynet --hostname mitmproxy -p 8080:8080 mitmproxy/mitmproxy mitmproxy --mode reverse:http://wordpress

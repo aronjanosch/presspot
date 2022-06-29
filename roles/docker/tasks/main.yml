@@ -45,3 +45,7 @@
     name: docker
     state: started
     enabled: yes
+
+- name: Create new docker network
+  docker_network:
+    name: honeynet
