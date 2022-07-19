@@ -30,6 +30,9 @@
       - "{{ docker_dir }}/{{ container_name }}/logs:/logs"
     networks:
       - name: honeynet
-    ports:
-      - "8080:8080"
+    env:
+        'VIRTUAL_HOST': 'press.wordpress.0rn.de'
+        'VIRTUAL_PORT': '8080'
+        'LETSENCRYPT_HOST': 'press.wordpress.0rn.de'
+        'LETSENCRYPT_EMAIL': 'aron.wiederkehr@gmail.com'
     restart_policy: unless-stopped

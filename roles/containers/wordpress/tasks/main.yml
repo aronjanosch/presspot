@@ -36,12 +36,7 @@
         'WORDPRESS_DB_USER': '{{ mysql_user }}'
         'WORDPRESS_DB_PASSWORD': '{{ mysql_password }}'
         'WORDPRESS_DB_HOST': 'wordpress-mysql'
-        'VIRTUAL_HOST': 'press.wordpress.0rn.de'
-        'VIRTUAL_PORT': '80'
-        'LETSENCRYPT_HOST': 'press.wordpress.0rn.de'
-        'LETSENCRYPT_EMAIL': 'aron.wiederkehr@gmail.com'
     ports:
-      - 8888:80
     volumes:
       - '{{ docker_dir }}/{{ container_name }}:/var/www/html'
     restart_policy: unless-stopped

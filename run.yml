@@ -32,11 +32,11 @@
         - containers
       when: enable_nginx_dummy
 
-    - role: containers/letsencrypt
+    - role: containers/rproxy_letsencrypt
       tags:
-        - letsencrypt
+        - rproxy
         - containers
-      when: enable_letsencrypt
+      when: enable_rproxy
     
     - role: containers/mitm-proxy
       tags:

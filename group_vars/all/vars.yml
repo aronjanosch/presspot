@@ -35,8 +35,8 @@ packages:
 # Enable Containers
 #
 
-enable_nginx: true
+enable_nginx: false
 enable_nginx_dummy: true
-enable_letsencrypt: false
+enable_rproxy: true
 enable_mitm: true
 enable_wordpress: true

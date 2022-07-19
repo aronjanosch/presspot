@@ -1,0 +1,34 @@
+---
+- name: Create the {{ container_name }} container
+  docker_container:
+    name: "{{ container_name }}"
+    image: "nginxproxy/nginx-proxy"
+    pull: yes
+    state: 'started'
+    volumes:
+      - "{{ docker_dir }}/{{ container_name }}/certs:/etc/nginx/certs"
+      - "{{ docker_dir }}/{{ container_name }}/vhost:/etc/nginx/vhost.d"
+      - "{{ docker_dir }}/{{ container_name }}/html:/usr/share/nginx/html"
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+    ports:
+      - "443:443"
+      - "80:80"
+    networks:
+      - name: honeynet
+    restart_policy: unless-stopped
+    
+- name: Create the acme-companion container
+  docker_container:
+    name: "amce"
+    image: "nginxproxy/acme-companion"
+    volumes_from:
+      - "rproxy"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "{{ docker_dir }}/{{ container_name }}/acme:/etc/acme.s"
+    env:
+        "DEFAULT_EMAIL=aron.wiederkehr@gmail.com"
+    networks:
+      - name: honeynet
+    restart_policy: unless-stopped
+    

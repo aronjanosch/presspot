@@ -1,11 +1,13 @@
 from mitmproxy import http, ctx
 import logging
 import os
+import datetime
 
 Request_Log = {}
 Log_Format = "%(levelname)s %(asctime)s - %(message)s"
 
-log_path = "/scripts/logfile.log"
+logfilename = datetime.datetime.now().strftime('mylogfile_%H_%M_%d_%m_%Y.log')
+log_path = "/scripts/{filename}".format(filename = str(logfilename))
 abs_log_path = os.path.abspath(log_path)
 
 logging.basicConfig(filename = log_path,
