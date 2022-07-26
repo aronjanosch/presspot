@@ -1,6 +1,7 @@
 FROM python:3
 
 RUN pip3 install mitmproxy
+RUN pip3 install python-logstash
 
 RUN mkdir -p /scripts
 

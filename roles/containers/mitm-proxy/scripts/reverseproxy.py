@@ -1,9 +1,12 @@
 from mitmproxy import http, ctx
+from mitmproxy.net.http.cookies import CookieAttrs
+import logstash
 import logging
 import os
 import datetime
+import codecs
+import json
 
-Request_Log = {}
 Log_Format = "%(levelname)s %(asctime)s - %(message)s"
 
 logfilename = datetime.datetime.now().strftime('mylogfile_%H_%M_%d_%m_%Y.log')
@@ -17,6 +20,13 @@ logging.basicConfig(filename = log_path,
 )
 
 logger = logging.getLogger()
+
+
+json_logger = logging.getLogger('presspot')
+json_logger.setLevel(logging.DEBUG)
+logstash_host = 'logstash'
+json_logger.addHandler(logstash.TCPLogstashHandler(logstash_host, 5959 , version=1))
+
 
 def b64_or_str(d):
     if isinstance(d, str):
@@ -64,7 +74,7 @@ def req2dict(request):
 def resp2dict(resp):
     return {
         'status_code': resp.status_code,
-        'content': resp.content,
+        #'content': resp.content,
         'cookies': resp.cookies,
         'headers': resp.headers
     }
@@ -79,13 +89,17 @@ def request(flow: http.HTTPFlow) -> None:
 
 def response(flow: http.HTTPFlow) -> None:
 
-    if not flow.id in Request_Log:
-        Request_Log[flow.id] = {
-            'request': req2dict(flow.request),
-            'response': resp2dict(flow.response)
+    req_log = {
+        'request': req2dict(flow.request),
+        'response': resp2dict(flow.response)
         }
+
+    test = {
+        'appname': "Service_Name"
+    }
     
     request = req2dict(flow.request)
+    json_logger.info('INFO', extra = req_log)
 
     firstline = str(request['headers']['X-Real-IP']) + " - " + str(request['method']) + ": " + str(request['url']) + "| content: " + str(request['content'])
     secondline = str(request['cookies'])

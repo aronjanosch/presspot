@@ -50,3 +50,9 @@
         - wordpress
         - containers
       when: enable_wordpress
+
+    - role: containers/elk
+      tags:
+        - elk
+        - containers
+      when: enable_elk

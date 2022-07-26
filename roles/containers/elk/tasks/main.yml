@@ -1,0 +1,71 @@
+- name: Create a ELK network
+  docker_network:
+      name: elk_network
+
+- name: Create ES Volume
+  docker_volume:
+    volume_name: es-data
+    driver: local
+
+- name: Create the {{ container_name }}-elasticsearch container
+  docker_container:
+    name: '{{ container_name }}-elasticsearch'
+    hostname: elasticsearch
+    image: 'elasticsearch:{{ version }}'
+    pull: yes
+    networks:
+      - name: honeynet
+      - name: elk_network
+    state: 'started'
+    memory: "{{ es_memory_limit }}"
+    ulimits:
+      - memlock:-1:-1
+    env:
+      discovery.type: 'single-node'
+    ports:
+      - 9200:9200
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    restart_policy: unless-stopped
+
+- name: Create the {{ container_name }}-kibana container
+  docker_container:
+    name: '{{ container_name }}-kibana'
+    hostname: kibana
+    image: 'kibana:{{ version }}'
+    pull: yes
+    networks:
+      - name: honeynet
+      - name: elk_network
+    state: 'started'
+    env:
+        VIRTUAL_HOST: 'kib.wordpress.0rn.de'
+        VIRTUAL_PORT: '5601'
+    ports:
+    volumes:
+    restart_policy: unless-stopped
+
+- name: Copy logstash files to host machine
+  ansible.builtin.copy:
+    src: roles/containers/elk/files/logstash.conf
+    dest: "{{ docker_dir }}/{{ container_name }}/logstash/pipeline/logstash.conf"
+
+- name: Create the {{ container_name }}-logstash container
+  docker_container:
+    name: '{{ container_name }}-logstash'
+    hostname: 'logstash'
+    image: 'logstash:{{ version }}'
+    pull: yes
+    networks:
+      - name: honeynet
+      - name: elk_network
+    state: 'started'
+    env:
+    ports:
+      - 5000:5000
+      - 5959:5959
+    volumes:
+      - "{{ docker_dir }}/{{ container_name }}/logstash/pipeline:/usr/share/logstash/pipeline"
+      #- "{{ docker_dir }}/{{ container_name }}/logstash/config:/usr/share/logstash/config"
+    restart_policy: unless-stopped
+

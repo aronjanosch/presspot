@@ -13,7 +13,7 @@
     build:
       path: "/tmp/scripts"
       dockerfile: Dockerfile
-    tag: ex3
+    tag: ex4
     state: present
     source: build
 
@@ -23,7 +23,7 @@
   docker_container:
     name: "{{ container_name }}"
     hostname: "mitmproxy"
-    image: mitmproxy-logger:ex3
+    image: mitmproxy-logger:ex4
     state: 'started'
     volumes:
       - "{{ docker_dir }}/{{ container_name }}:/scripts"

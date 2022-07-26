@@ -1,9 +1,4 @@
 #
-# Networks
-#
-
-
-#
 # Misc
 #
 username: aron
@@ -40,3 +35,9 @@ enable_nginx_dummy: true
 enable_rproxy: true
 enable_mitm: true
 enable_wordpress: true
+enable_elk: true
+
+#
+# Containers
+#
+
