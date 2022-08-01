@@ -1,0 +1,16 @@
+[
+        {
+            "name":"wordpress2",
+            "hostname": "wordpress2",
+            "image": "wordpress:latest",
+            "url": "wp2.wordpress.0rn.de",
+            "volumes": "{{ docker_dir }}/wordpress2:/var/www/html"
+        },
+        {
+            "name":"wordpress3",
+            "hostname": "wordpress3",
+            "image": "wordpress:5.0.1",
+            "url": "wp3.wordpress.0rn.de",
+            "volumes": "{{ docker_dir }}/wordpress3:/var/www/html"
+        }
+]

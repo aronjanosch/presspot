@@ -1,55 +1,7 @@
 ---
-- name: Create a wordpress network
-  docker_network:
-      name: wordpress_network
-
-- name: Make sure the MYSQL container is created and running
-  docker_container:
-      name: 'wordpress-mysql'
-      hostname: 'wordpress-mysql'
-      image: 'mysql:latest'
-      pull: yes
-      networks:
-          - name: wordpress_network
-      state: 'started'
-      env:
-          'MYSQL_ROOT_PASSWORD': '{{ mysql_root_password }}'
-          'MYSQL_DATABASE': '{{ mysql_db }}'
-          'MYSQL_USER': '{{ mysql_user }}'
-          'MYSQL_PASSWORD': '{{ mysql_password }}'
-      volumes:
-          - '{{ docker_dir }}/{{ container_name }}/mysql:/var/lib/mysql'
-      restart_policy: unless-stopped
-
-- name: Create the {{ container_name }} container
-  docker_container:
-    name: "{{ container_name }}"
-    hostname: "wordpress"
-    image: "wordpress:latest"
-    pull: yes
-    networks:
-      - name: honeynet
-      - name: wordpress_network
-    state: 'started'
-    env:
-        'WORDPRESS_DB_NAME': '{{ mysql_db }}'
-        'WORDPRESS_DB_USER': '{{ mysql_user }}'
-        'WORDPRESS_DB_PASSWORD': '{{ mysql_password }}'
-        'WORDPRESS_DB_HOST': 'wordpress-mysql'
-    ports:
-    volumes:
-      - '{{ docker_dir }}/{{ container_name }}:/var/www/html'
-    restart_policy: unless-stopped
-
-- name: Create phpmyadmin container
-  docker_container:
-    name: "phpmyadmin"
-    image: "phpmyadmin"
-    pull: yes
-    networks:
-      - name: wordpress_network
-    ports:
-      - 8181:80
-    env:
-        "PMA_ARBITRARY": "1"
+- include_tasks: dbs.yml
+  when: enable_multiwp
+- include_tasks: docker.yml
+- include_tasks: containers.yml
+  when: enable_multiwp
     

@@ -1,0 +1,17 @@
+services:
+{% for item in wpContainers %}
+  {{ item.name }}:
+    hostname: {{ item.hostname }}
+    image: {{ item.image }}
+    networks:
+      - honeynet
+      - wordpress_network
+    environment:
+      - WORDPRESS_DB_NAME={{ item.name }}
+      - WORDPRESS_DB_USER={{ mysql_user }}
+      - WORDPRESS_DB_PASSWORD={{ mysql_password }}
+      - WORDPRESS_DB_HOST=wordpress-mysql
+    volumes:
+      - {{ docker_dir }}/{{ item.name }}:/var/www/html
+    restart: unless-stopped
+{% endfor %}

@@ -10,6 +10,8 @@
       - "{{ docker_dir }}/{{ container_name }}/vhost:/etc/nginx/vhost.d"
       - "{{ docker_dir }}/{{ container_name }}/html:/usr/share/nginx/html"
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
+    env:
+       # 'DEFAULT_HOST': 'press.wordpress.0rn.de'
     ports:
       - "443:443"
       - "80:80"
@@ -19,15 +21,15 @@
     
 - name: Create the acme-companion container
   docker_container:
-    name: "amce"
+    name: "acme"
     image: "nginxproxy/acme-companion"
     volumes_from:
       - "rproxy"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "{{ docker_dir }}/{{ container_name }}/acme:/etc/acme.s"
+      - "{{ docker_dir }}/{{ container_name }}/acme:/etc/acme.sh"
     env:
-        "DEFAULT_EMAIL=aron.wiederkehr@gmail.com"
+        'DEFAULT_EMAIL': 'aron.wiederkehr@gmail.com'
     networks:
       - name: honeynet
     restart_policy: unless-stopped

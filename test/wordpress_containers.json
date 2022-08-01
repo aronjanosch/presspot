@@ -1,0 +1,30 @@
+[
+        {
+            "name":"wordpress2",
+            "hostname": "wordpress2",
+            "image": "wordpress:latest",
+            "url": "url.wordpress.0rn.de",
+            "env": {
+                    "WORDPRESS_DB_NAME":"wordpress2",
+                    "WORDPRESS_DB_USER": "{{ mysql_user }}",
+                    "WORDPRESS_DB_PASSWORD": "{{ mysql_password }}",
+                    "WORDPRESS_DB_HOST": "wordpress-mysql"
+                },
+            "volumes": "{{ docker_dir }}/wordpress2:/var/www/html"
+        },
+        {
+            "name":"wordpress3",
+            "hostname": "wordpress3",
+            "image": "wordpress:latest",
+            "url": "",
+            "env": {
+                    "WORDPRESS_DB_NAME":"wordpress3",
+                    "WORDPRESS_DB_USER": "{{ mysql_user }}",
+                    "WORDPRESS_DB_PASSWORD": "{{ mysql_password }}",
+                    "WORDPRESS_DB_HOST": "wordpress-mysql"
+                }
+                
+            ,
+            "volumes": "{{ docker_dir }}/wordpress3:/var/www/html"
+        }
+]

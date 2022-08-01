@@ -4,6 +4,11 @@
     src: roles/containers/mitm-proxy/scripts/reverseproxy.py
     dest: "{{ docker_dir }}/{{ container_name }}/reverseproxy.py"
 
+- name: Copy json
+  ansible.builtin.copy:
+    src: files/wordpress_containers.json
+    dest: "{{ docker_dir }}/{{ container_name }}/wordpress_containers.json"
+
 - name: upload the scripts directory to the docker host
   synchronize: src=roles/containers/mitm-proxy/scripts dest=/tmp
 
@@ -13,11 +18,18 @@
     build:
       path: "/tmp/scripts"
       dockerfile: Dockerfile
-    tag: ex4
+    tag: ex6
     state: present
     source: build
 
+- name: Save vars
+  set_fact:
+    wpContainers: "{{ lookup('file', 'files/wordpress_containers.json') | from_json }}"
 
+- name: Creat Virtual Hostnames string
+  set_fact:
+    a: "{{ a | default('press.wordpress.0rn.de') + ',' + item.url }}"
+  loop: "{{ wpContainers }}"
 
 - name: Create the {{ container_name }} container
   docker_container:
@@ -31,8 +43,9 @@
     networks:
       - name: honeynet
     env:
-        'VIRTUAL_HOST': 'press.wordpress.0rn.de'
+        'VIRTUAL_HOST': '{{ a }}'
         'VIRTUAL_PORT': '8080'
-        'LETSENCRYPT_HOST': 'press.wordpress.0rn.de'
+        'LETSENCRYPT_HOST': '{{ a }}'
         'LETSENCRYPT_EMAIL': 'aron.wiederkehr@gmail.com'
+        'LETSENCRYPT_SINGLE_DOMAIN_CERTS': 'true'
     restart_policy: unless-stopped

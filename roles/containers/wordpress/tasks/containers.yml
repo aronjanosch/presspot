@@ -1,0 +1,14 @@
+---
+- name: Generate docker-compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: "/home/{{ username }}/wp-compose/docker-compose.yml"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: deploy Docker Compose stack
+  community.docker.docker_compose:
+    project_src: /home/{{ username }}/wp-compose/
+    files:
+    - docker-compose.yml

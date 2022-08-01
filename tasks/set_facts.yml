@@ -1,0 +1,4 @@
+---
+- name: Save vars
+  set_fact:
+    wpContainers: "{{ lookup('file', 'files/wordpress_containers.json') | from_json }}"

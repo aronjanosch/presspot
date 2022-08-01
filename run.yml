@@ -2,9 +2,9 @@
 - hosts: all
   become: yes
 
-  tasks:
-    - import_tasks: tasks/essential.yml
-  
+  pre_tasks:
+    - import_tasks: tasks/essential.yml  
+    - import_tasks: tasks/set_facts.yml 
   roles:
     #
     # Basics
@@ -56,3 +56,9 @@
         - elk
         - containers
       when: enable_elk
+    
+    - role: containers/wp
+      tags:
+        - wp
+        - containers
+      when: enable_test_wp

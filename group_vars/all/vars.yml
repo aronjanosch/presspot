@@ -25,6 +25,7 @@ packages:
   - net-tools
   - rsync
   - fish
+  - telnet
 
 #
 # Enable Containers
@@ -36,6 +37,7 @@ enable_rproxy: true
 enable_mitm: true
 enable_wordpress: true
 enable_elk: true
+enable_test_wp: true
 
 #
 # Containers

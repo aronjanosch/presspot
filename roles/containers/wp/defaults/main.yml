@@ -1,3 +1,2 @@
 ---
 container_name: wordpress
-enable_multiwp: true

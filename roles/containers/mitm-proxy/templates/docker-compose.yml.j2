@@ -1,0 +1,16 @@
+services:
+  {% for item in wpContainers %}
+  mitm_{{ item.name }}:
+    hostname: mitm_{{ item.hostname }}
+    image: mitmproxy-logger:ex4
+    networks:
+      - honeynet
+    environment:
+        - VIRTUAL_HOST={{ item.url }}
+        - VIRTUAL_PORT=8080
+        - LETSENCRYPT_HOST: {{ item.url }}
+        - LETSENCRYPT_EMAIL=aron.wiederkehr@gmail.com'
+    volumes:
+      - {{ docker_dir }}/{{ item.name }}:/var/www/html
+    restart: unless-stopped
+  {% endfor %}

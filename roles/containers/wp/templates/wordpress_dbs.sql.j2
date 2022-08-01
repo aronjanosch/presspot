@@ -1,0 +1,7 @@
+# create as many databases as you want
+{% for item in wpContainers %}
+CREATE DATABASE IF NOT EXISTS {{ item.name }};
+{% endfor %}
+
+# grant rights to user `{{ mysql_user }}`
+GRANT ALL ON *.* TO '{{ mysql_user }}'@'%';

@@ -1,0 +1,38 @@
+---
+- name: Save vars
+  set_fact:
+    wpContainers: "{{ lookup('file', 'files/wordpress_containers.json') | from_json }}"
+    
+- name: Display all
+  debug:
+    msg: "{{ wpContainers }}"
+
+- name: Display all container names
+  debug:
+    msg: "{{ item.name }}"
+  loop: "{{ wpContainers }}"
+
+- name: Generate wordpress_dbs SQL file
+  template:
+    src: wordpress_dbs.sql.j2
+    dest: "/home/aron/test/wordpress_dbs.sql"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: Generate docker-compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: "/home/aron/test/docker-compose.yml"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+
+- name: Creat Virtual Hostnames string
+  set_fact:
+    a: "{{ a | default('press.wordpress.0rn.de') + ',' + item.url }}"
+  loop: "{{ wpContainers }}"
+
+- name: debug
+  debug: var=a

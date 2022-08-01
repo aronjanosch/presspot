@@ -1,0 +1,21 @@
+---
+- name: Save vars
+  set_fact:
+    wpContainers: "{{ lookup('file', 'files/wordpress_containers.json') | from_json }}"
+
+- name: Create db-init folder
+  become: yes
+  file:
+    path: "{{ docker_dir }}/mysql/db-init"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: directory
+    recurse: yes
+
+- name: Generate wordpress_dbs SQL file
+  template:
+    src: wordpress_dbs.sql.j2
+    dest: "{{ docker_dir }}/mysql/db-init/wordpress_dbs.sql"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
