@@ -1,0 +1,16 @@
+input {
+   tcp {
+    port => 5959
+    codec => json
+   } 
+}
+
+output {
+    elasticsearch {
+        hosts => ["http://elasticsearch:9200"]
+        user => '{{ es_user }}'
+        password => '{{ es_password }}'
+        index => "wordpress-honeypot-decoded"
+    }
+    stdout{codec => rubydebug}
+}

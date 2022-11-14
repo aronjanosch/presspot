@@ -6,6 +6,7 @@ import os
 import datetime
 import codecs
 import json
+import base64
 
 Log_Format = "%(levelname)s %(asctime)s - %(message)s"
 
@@ -23,18 +24,24 @@ logger = logging.getLogger()
 
 
 json_logger = logging.getLogger('presspot')
-json_logger.setLevel(logging.DEBUG)
+json_logger.setLevel(logging.INFO)
 logstash_host = 'logstash'
 json_logger.addHandler(logstash.TCPLogstashHandler(logstash_host, 5959 , version=1))
 
 
 container_json = json.load(open('/scripts/wordpress_containers.json', 'r'))
 
+def isBase64(s):
+    try:
+        return base64.b64encode(base64.b64decode(s)) == s
+    except Exception:
+        return False
+
 def b64_or_str(d):
     if isinstance(d, str):
         encoded = d
     else:
-        encoded = codecs.encode(d, "base64").decode().strip()
+        encoded = (base64.b64decode(d.decode().strip())).decode().strip()
 
     return encoded
 
@@ -57,7 +64,29 @@ def multi2dict(multi):
 
     return data
 
+def clean_lists(dict):
+    for k, v in dict.items():
+        if isinstance(v, list) and len(v) < 2:
+            dict[k] = v[0]
+    return dict
+
 def req2dict(request):
+    data = {
+        'scheme': request.scheme,
+        'host': request.host,
+        'method': request.method,
+        'port': request.port,
+        'path': request.path,
+        'content': b64_or_str(request.content),
+        'url': request.url,
+        'cookies': multi2dict(request.cookies),
+        'query': multi2dict(request.query),
+        'headers':clean_lists(multi2dict(request.headers)),
+        'multipart_form': multi2dict(request.multipart_form)
+    }
+    return data
+
+def req2dict_old(request):
     data = {
         'scheme': request.scheme,
         'host': request.host,
@@ -73,12 +102,14 @@ def req2dict(request):
     }
     return data
 
+
+
 def resp2dict(resp):
     return {
         'status_code': resp.status_code,
         #'content': resp.content,
-        'cookies': resp.cookies,
-        'headers': resp.headers
+        'cookies': multi2dict(resp.cookies),
+        #'headers': multi2dict(resp.headers)
     }
 
 
@@ -107,14 +138,16 @@ def response(flow: http.HTTPFlow) -> None:
         'request': req2dict(flow.request),
         'response': resp2dict(flow.response)
         }
-
+    req_log['request']['IP'] = req_log['request']['headers']['X-Real-IP']
     
-    request = req2dict(flow.request)
+    ctx.log.info(req_log['request']['content'])
+
+
+    request = req2dict_old(flow.request)
+    
     json_logger.info('INFO', extra = req_log)
 
     firstline = str(request['headers']['X-Real-IP']) + " - " + str(request['method']) + ": " + str(request['url']) + "| content: " + str(request['content'])
     secondline = str(request['cookies'])
     logger.info(firstline + "\n" + secondline)
-    
-    
     

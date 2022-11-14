@@ -22,8 +22,10 @@
       - memlock:-1:-1
     env:
       discovery.type: 'single-node'
-    ports:
-      - 9200:9200
+      xpack.security.enabled: 'true'
+      xpack.security.audit.enabled: 'true'
+      xpack.security.http.ssl.enabled: 'false'
+      ELASTIC_PASSWORD: '{{ es_password }}'
     volumes:
       - es-data:/usr/share/elasticsearch/data
     restart_policy: unless-stopped
@@ -39,16 +41,24 @@
       - name: elk_network
     state: 'started'
     env:
-        VIRTUAL_HOST: 'kib.wordpress.0rn.de'
-        VIRTUAL_PORT: '5601'
+      ELASTICSEARCH_USERNAME: '{{ es_user }}'
+      ELASTICSEARCH_PASSWORD: '{{ es_password }}'
     ports:
+      - 5601:5601
     volumes:
     restart_policy: unless-stopped
 
-- name: Copy logstash files to host machine
-  ansible.builtin.copy:
-    src: roles/containers/elk/files/logstash.conf
+# - name: Copy logstash files to host machine
+#   ansible.builtin.copy:
+#     src: roles/containers/elk/files/logstash.conf
+#     dest: "{{ docker_dir }}/{{ container_name }}/logstash/pipeline/logstash.conf"
+
+- name: Generate logstash.conf file
+  template:
+    src: logstash.conf.j2
     dest: "{{ docker_dir }}/{{ container_name }}/logstash/pipeline/logstash.conf"
+    owner: "{{ username }}"
+    group: "{{ username }}"
 
 - name: Create the {{ container_name }}-logstash container
   docker_container:
@@ -61,11 +71,8 @@
       - name: elk_network
     state: 'started'
     env:
-    ports:
-      - 5000:5000
-      - 5959:5959
     volumes:
       - "{{ docker_dir }}/{{ container_name }}/logstash/pipeline:/usr/share/logstash/pipeline"
-      #- "{{ docker_dir }}/{{ container_name }}/logstash/config:/usr/share/logstash/config"
+      - "{{ docker_dir }}/{{ container_name }}/logstash/config:/usr/share/logstash/config"
     restart_policy: unless-stopped
 

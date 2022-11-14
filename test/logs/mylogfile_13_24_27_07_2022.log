@@ -1,0 +1,9 @@
+INFO 2022-07-27 17:27:13,734 - INFO
+INFO 2022-07-27 17:27:13,738 - ['51.158.98.24'] - GET: http://wordpress/| content: b''
+{}
+INFO 2022-08-01 09:22:17,754 - INFO
+INFO 2022-08-01 09:22:17,756 - ['141.72.224.130'] - GET: http://wordpress/?feed=comments-rss2| content: b''
+{'wordpress_test_cookie': ['WP%20Cookie%20check'], 'wp_lang': ['en_US'], 'wordpress_logged_in_fe57699037a194fc62bf4f57f7185bca': ['jenny%7C1656599851%7Cx887PAzhh4Mf7mlQPwtAEArNmbmdZZRMM4NvhXzfx5f%7Cb8969ebf9c26f8ca4db0475097e13907944b4f1e3de593512067479906c738eb'], 'wp-settings-1': ['libraryContent%3Dbrowse'], 'wp-settings-time-1': ['1656427051']}
+INFO 2022-08-01 09:22:17,877 - INFO
+INFO 2022-08-01 09:22:17,878 - ['141.72.224.130'] - GET: http://wordpress/favicon.ico| content: b''
+{'wordpress_test_cookie': ['WP%20Cookie%20check'], 'wp_lang': ['en_US'], 'wordpress_logged_in_fe57699037a194fc62bf4f57f7185bca': ['jenny%7C1656599851%7Cx887PAzhh4Mf7mlQPwtAEArNmbmdZZRMM4NvhXzfx5f%7Cb8969ebf9c26f8ca4db0475097e13907944b4f1e3de593512067479906c738eb'], 'wp-settings-1': ['libraryContent%3Dbrowse'], 'wp-settings-time-1': ['1656427051']}

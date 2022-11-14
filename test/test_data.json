@@ -1,0 +1,79 @@
+{
+    "_index": "wordpress-honeypot",
+    "_type": "_doc",
+    "_id": "uZywXYIB4rYwotPp1LuZ",
+    "_version": 1,
+    "_score": null,
+    "_source": {
+      "@version": "1",
+      "message": "INFO",
+      "@timestamp": "2022-08-02T08:34:05.999Z",
+      "path": "/scripts/reverseproxy.py",
+      "tags": [],
+      "level": "INFO",
+      "logger_name": "presspot",
+      "host": "193.37.33.37",
+      "type": "logstash",
+      "response": {
+        "status_code": 200,
+        "headers": "Headers[(b'Date', b'Tue, 02 Aug 2022 08:34:05 GMT'), (b'Server', b'Apache/2.4.10 (Debian)'), (b'X-Powered-By', b'PHP/5.6.30'), (b'Link', b'<https://presspot.duckdns.org/?rest_route=/>; rel=\"https://api.w.org/\"'), (b'Vary', b'Accept-Encoding'), (b'Content-Encoding', b'gzip'), (b'Content-Length', b'17433'), (b'Connection', b'close'), (b'Content-Type', b'text/html; charset=UTF-8')]",
+        "cookies": "MultiDictView[]"
+      },
+      "request": {
+        "multipart_form": {},
+        "path": "/",
+        "method": "GET",
+        "host": "wordpress4",
+        "scheme": "http",
+        "cookies": {},
+        "port": 80,
+        "content": "b''",
+        "url": "http://wordpress4/",
+        "headers": {
+          "X-Real-IP": [
+            "193.37.33.37"
+          ],
+          "Accept": [
+            "*/*"
+          ],
+          "X-Forwarded-For": [
+            "193.37.33.37"
+          ],
+          "Connection": [
+            "close"
+          ],
+          "X-Forwarded-Ssl": [
+            "on"
+          ],
+          "X-Original-URI": [
+            "/"
+          ],
+          "Host": [
+            "presspot.duckdns.org"
+          ],
+          "X-Forwarded-Proto": [
+            "https"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "User-Agent": [
+            "python-requests/2.22.0"
+          ],
+          "X-Forwarded-Port": [
+            "443"
+          ]
+        },
+        "query": {}
+      },
+      "port": 56218
+    },
+    "fields": {
+      "@timestamp": [
+        "2022-08-02T08:34:05.999Z"
+      ]
+    },
+    "sort": [
+      1659429245999
+    ]
+  }
