@@ -1,0 +1,1 @@
+{"@timestamp": "2022-08-01 17:06:11,739", "ip": "141.72.224.130", "request.IP": "141.72.224.130", "request.headers.X-Forwarded-For": "141.72.224.130", "request.method": "GET", "request.host": "wordpress", "request.url": "http://wordpress/", "request.content": "''"}

@@ -2,32 +2,59 @@ import logstash
 import json
 import re
 import ndjson
+import os
 
-log_list = []
-file = 'logfile_19-07.log'
-# https://regex101.com/r/qO7aKv/1
-m = re.compile('(INFO) (.{23}) - \[\'(\d*.\d*.\d*.\d*)\'] - (\w*): (http:\/\/.+?(?=\/))(.+?(?=\|))\| content: (.*)')
 
-with open(file) as f:
-    lines = f.readlines()
-    for line in lines:
-        if line[0] == "{":
-            continue
+path = 'test/logs/cleaned'
+files = os.listdir(path)
+files = [f for f in files if os.path.isfile(path+'/'+f)]
+# https://regex101.com/r/6SVdaz/1
+m = re.compile('(INFO) (.{23}) \[\'(\d*.\d*.\d*.\d*)\'\] (\w*) (http:\/\/(.+?(?=\/)).+?) content:(\'.*\') headers:(\{.*\})')
+
+for old_file in files:
+    file = open((os.path.join(path, old_file)), 'r')
+    print(old_file)
+    log_list = []
+
+    while True:
+
+        line = file.readline()
+        if not line:
+            break
         g = m.search(line)
         if g:
-            log_list.append({
-                '@timestamp':g.group(2),
-                'request.IP':g.group(3),
-                'request.headers.X-Forwarded-For':g.group(3),
-                'request.method':g.group(4),
-                'request.headers.Host':g.group(5),
-                'request.path':g.group(6),
-                'request.content':g.group(7)
-            }
-            )
+            try: 
+                log_list.append({
+                    '@timestamp':g.group(2),
+                    'ip':g.group(3),
+                    'request.IP':g.group(3),
+                    'request.headers.X-Forwarded-For':g.group(3),
+                    'request.method':g.group(4),
+                    'request.host':g.group(6),
+                    'request.url':g.group(5),
+                    'request.content':g.group(7),
+                    #'request.headers':g.group(8)
+                })
+                
+                # log_list.append({
+                #     '@timestamp':g.group(2),
+                #     'request':{
+                #         'IP':g.group(3),
+                #         'content':g.group(7),
+                #         'headers':{
+                #             'X-Forwarded-For':g.group(3)
+                #         },
+                #         'host':g.group(6),
+                #         'method':g.group(4),
+                #         'url':g.group(5)
+                #     }
+                # })
+            except Exception as e:
+                print(e)
+                print(line)
 
-with open('logfile.ndjson', 'w') as outfile:
-    ndjson.dump(log_list, outfile)
+    with open((os.path.join((path + "/ndjson"), old_file)) + '.ndjson', 'w') as outfile:
+        ndjson.dump(log_list, outfile)
 
 print('DONE')
 #print(json.dumps(log_list, indent=4))

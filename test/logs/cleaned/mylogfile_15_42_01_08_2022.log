@@ -1,0 +1,10 @@
+INFO 2022-08-01 15:43:43,384 ['141.72.224.130'] GET http://wordpress/ content:'' headers:{}
+INFO 2022-08-01 15:43:43,632 ['141.72.224.130'] GET http://wordpress/wp-content/themes/twentytwentytwo/assets/fonts/source-serif-pro/SourceSerif4Variable-Roman.ttf.woff2 content:'' headers:{}
+INFO 2022-08-01 15:43:43,903 ['141.72.224.130'] GET http://wordpress/favicon.ico content:'' headers:{}
+INFO 2022-08-01 16:02:09,141 ['141.72.224.130'] GET http://wordpress/ content:'' headers:{}
+INFO 2022-08-01 16:02:09,299 ['141.72.224.130'] GET http://wordpress/wp-includes/blocks/navigation/style.min.css?ver=6.0.1 content:'' headers:{}
+INFO 2022-08-01 16:02:09,333 ['141.72.224.130'] GET http://wordpress/wp-content/themes/twentytwentytwo/style.css?ver=1.2 content:'' headers:{}
+INFO 2022-08-01 16:02:09,342 ['141.72.224.130'] GET http://wordpress/wp-includes/blocks/navigation/view.min.js?ver=009e29110e016c14bac4ba0ecc809fcd content:'' headers:{}
+INFO 2022-08-01 16:02:09,351 ['141.72.224.130'] GET http://wordpress/wp-includes/js/wp-emoji-release.min.js?ver=6.0.1 content:'' headers:{}
+INFO 2022-08-01 16:02:09,382 ['141.72.224.130'] GET http://wordpress/wp-content/themes/twentytwentytwo/assets/images/flight-path-on-transparent-d.png content:'' headers:{}
+INFO 2022-08-01 16:07:28,452 ['141.72.224.130'] GET http://wordpress/?p=1 content:'' headers:{}

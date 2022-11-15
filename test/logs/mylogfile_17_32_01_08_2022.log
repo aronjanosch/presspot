@@ -1,0 +1,183 @@
+INFO 2022-08-01 17:33:49,821 - INFO
+INFO 2022-08-01 17:33:49,826 - ['141.72.224.130'] - GET: http://wordpress/| content: b''
+{'wordpress_test_cookie': ['WP%20Cookie%20check']}
+INFO 2022-08-01 17:34:04,267 - INFO
+INFO 2022-08-01 17:34:04,268 - ['141.72.224.130'] - GET: http://wordpress2/| content: b''
+{}
+INFO 2022-08-01 17:34:04,407 - INFO
+INFO 2022-08-01 17:34:04,408 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/blocks/navigation/style.min.css?ver=6.0.1| content: b''
+{}
+INFO 2022-08-01 17:34:04,454 - INFO
+INFO 2022-08-01 17:34:04,457 - ['141.72.224.130'] - GET: http://wordpress2/wp-content/themes/twentytwentytwo/style.css?ver=1.2| content: b''
+{}
+INFO 2022-08-01 17:34:04,464 - INFO
+INFO 2022-08-01 17:34:04,466 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/blocks/navigation/view.min.js?ver=009e29110e016c14bac4ba0ecc809fcd| content: b''
+{}
+INFO 2022-08-01 17:34:04,471 - INFO
+INFO 2022-08-01 17:34:04,472 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/js/wp-emoji-release.min.js?ver=6.0.1| content: b''
+{}
+INFO 2022-08-01 17:34:04,501 - INFO
+INFO 2022-08-01 17:34:04,502 - ['141.72.224.130'] - GET: http://wordpress2/wp-content/themes/twentytwentytwo/assets/images/flight-path-on-transparent-d.png| content: b''
+{}
+INFO 2022-08-01 17:34:04,522 - INFO
+INFO 2022-08-01 17:34:04,523 - ['141.72.224.130'] - GET: http://wordpress2/wp-content/themes/twentytwentytwo/assets/fonts/source-serif-pro/SourceSerif4Variable-Roman.ttf.woff2| content: b''
+{}
+INFO 2022-08-01 17:34:04,661 - INFO
+INFO 2022-08-01 17:34:04,662 - ['141.72.224.130'] - GET: http://wordpress2/favicon.ico| content: b''
+{}
+INFO 2022-08-01 17:34:29,535 - INFO
+INFO 2022-08-01 17:34:29,541 - ['141.72.224.130'] - GET: http://wordpress2/| content: b''
+{}
+INFO 2022-08-01 17:34:29,624 - INFO
+INFO 2022-08-01 17:34:29,624 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/blocks/navigation/style.min.css?ver=6.0.1| content: b''
+{}
+INFO 2022-08-01 17:34:29,650 - INFO
+INFO 2022-08-01 17:34:29,651 - ['141.72.224.130'] - GET: http://wordpress2/wp-content/themes/twentytwentytwo/style.css?ver=1.2| content: b''
+{}
+INFO 2022-08-01 17:34:29,653 - INFO
+INFO 2022-08-01 17:34:29,654 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/blocks/navigation/view.min.js?ver=009e29110e016c14bac4ba0ecc809fcd| content: b''
+{}
+INFO 2022-08-01 17:34:29,792 - INFO
+INFO 2022-08-01 17:34:29,794 - ['141.72.224.130'] - GET: http://wordpress2/wp-content/themes/twentytwentytwo/assets/images/flight-path-on-transparent-d.png| content: b''
+{}
+INFO 2022-08-01 17:34:29,800 - INFO
+INFO 2022-08-01 17:34:29,801 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/js/wp-emoji-release.min.js?ver=6.0.1| content: b''
+{}
+INFO 2022-08-01 17:34:29,878 - INFO
+INFO 2022-08-01 17:34:29,881 - ['141.72.224.130'] - GET: http://wordpress2/wp-content/themes/twentytwentytwo/assets/fonts/source-serif-pro/SourceSerif4Variable-Roman.ttf.woff2| content: b''
+{}
+INFO 2022-08-01 17:34:30,042 - INFO
+INFO 2022-08-01 17:34:30,042 - ['141.72.224.130'] - GET: http://wordpress2/favicon.ico| content: b''
+{}
+INFO 2022-08-01 17:48:58,446 - INFO
+INFO 2022-08-01 17:48:58,455 - ['141.72.224.130'] - GET: http://wordpress/| content: b''
+{'wordpress_test_cookie': ['WP%20Cookie%20check']}
+INFO 2022-08-01 17:49:09,186 - INFO
+INFO 2022-08-01 17:49:09,187 - ['141.72.224.130'] - GET: http://wordpress2/| content: b''
+{}
+INFO 2022-08-01 17:49:19,692 - INFO
+INFO 2022-08-01 17:49:19,698 - ['141.72.224.130'] - GET: http://wordpress/wp-admin/install.php| content: b''
+{'wordpress_test_cookie': ['WP%20Cookie%20check']}
+INFO 2022-08-01 17:49:30,461 - INFO
+INFO 2022-08-01 17:49:30,463 - ['141.72.224.130'] - GET: http://wordpress2/wp-admin/install.php| content: b''
+{}
+INFO 2022-08-01 17:49:30,655 - INFO
+INFO 2022-08-01 17:49:30,658 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/css/dashicons.min.css?ver=6.0.1| content: b''
+{}
+INFO 2022-08-01 17:49:30,692 - INFO
+INFO 2022-08-01 17:49:30,695 - ['141.72.224.130'] - GET: http://wordpress2/wp-admin/css/l10n.min.css?ver=6.0.1| content: b''
+{}
+INFO 2022-08-01 17:49:30,699 - INFO
+INFO 2022-08-01 17:49:30,701 - ['141.72.224.130'] - GET: http://wordpress2/wp-admin/css/forms.min.css?ver=6.0.1| content: b''
+{}
+INFO 2022-08-01 17:49:30,705 - INFO
+INFO 2022-08-01 17:49:30,706 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/css/buttons.min.css?ver=6.0.1| content: b''
+{}
+INFO 2022-08-01 17:49:30,713 - INFO
+INFO 2022-08-01 17:49:30,714 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/js/jquery/jquery.min.js?ver=3.6.0| content: b''
+{}
+INFO 2022-08-01 17:49:30,718 - INFO
+INFO 2022-08-01 17:49:30,719 - ['141.72.224.130'] - GET: http://wordpress2/wp-admin/css/install.min.css?ver=6.0.1| content: b''
+{}
+INFO 2022-08-01 17:49:30,762 - INFO
+INFO 2022-08-01 17:49:30,763 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2| content: b''
+{}
+INFO 2022-08-01 17:49:30,773 - INFO
+INFO 2022-08-01 17:49:30,774 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/js/zxcvbn-async.min.js?ver=1.0| content: b''
+{}
+INFO 2022-08-01 17:49:30,784 - INFO
+INFO 2022-08-01 17:49:30,785 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/js/dist/vendor/regenerator-runtime.min.js?ver=0.13.9| content: b''
+{}
+INFO 2022-08-01 17:49:30,787 - INFO
+INFO 2022-08-01 17:49:30,788 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0| content: b''
+{}
+INFO 2022-08-01 17:49:30,801 - INFO
+INFO 2022-08-01 17:49:30,802 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/js/dist/hooks.min.js?ver=c6d64f2cb8f5c6bb49caca37f8828ce3| content: b''
+{}
+INFO 2022-08-01 17:49:30,826 - INFO
+INFO 2022-08-01 17:49:30,827 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/js/dist/i18n.min.js?ver=ebee46757c6a411e38fd079a7ac71d94| content: b''
+{}
+INFO 2022-08-01 17:49:30,845 - INFO
+INFO 2022-08-01 17:49:30,847 - ['141.72.224.130'] - GET: http://wordpress2/wp-admin/js/password-strength-meter.min.js?ver=6.0.1| content: b''
+{}
+INFO 2022-08-01 17:49:30,864 - INFO
+INFO 2022-08-01 17:49:30,864 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/js/underscore.min.js?ver=1.13.3| content: b''
+{}
+INFO 2022-08-01 17:49:30,872 - INFO
+INFO 2022-08-01 17:49:30,872 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/js/wp-util.min.js?ver=6.0.1| content: b''
+{}
+INFO 2022-08-01 17:49:30,874 - INFO
+INFO 2022-08-01 17:49:30,875 - ['141.72.224.130'] - GET: http://wordpress2/wp-admin/js/user-profile.min.js?ver=6.0.1| content: b''
+{}
+INFO 2022-08-01 17:49:30,883 - INFO
+INFO 2022-08-01 17:49:30,883 - ['141.72.224.130'] - GET: http://wordpress2/wp-admin/images/wordpress-logo.svg?ver=20131107| content: b''
+{}
+INFO 2022-08-01 17:49:31,052 - INFO
+INFO 2022-08-01 17:49:31,053 - ['141.72.224.130'] - GET: http://wordpress2/wp-includes/js/zxcvbn.min.js| content: b''
+{}
+INFO 2022-08-01 17:53:00,571 - INFO
+INFO 2022-08-01 17:53:00,580 - ['141.72.224.130'] - GET: http://wordpress/| content: b''
+{'wordpress_test_cookie': ['WP%20Cookie%20check']}
+INFO 2022-08-01 17:53:04,197 - INFO
+INFO 2022-08-01 17:53:04,200 - ['141.72.224.130'] - GET: http://wordpress2/| content: b''
+{}
+INFO 2022-08-01 17:53:21,743 - INFO
+INFO 2022-08-01 17:53:21,750 - ['141.72.224.130'] - GET: http://wordpress/wp-admin/install.php| content: b''
+{'wordpress_test_cookie': ['WP%20Cookie%20check']}
+INFO 2022-08-01 17:53:25,049 - INFO
+INFO 2022-08-01 17:53:25,050 - ['141.72.224.130'] - GET: http://wordpress2/wp-admin/install.php| content: b''
+{}
+INFO 2022-08-01 17:54:45,037 - INFO
+INFO 2022-08-01 17:54:45,039 - ['141.72.224.130'] - POST: http://wordpress/wp-admin/install.php?step=2| content: b'weblog_title=Jenny+Travel+Blog&user_name=jenny&admin_password=%29E9CoPI*sM%5EO3zpkjb&admin_password2=%29E9CoPI*sM%5EO3zpkjb&admin_email=jenny%40byom.de&Submit=Install+WordPress&language='
+{'wordpress_test_cookie': ['WP%20Cookie%20check']}
+INFO 2022-08-01 17:54:59,322 - INFO
+INFO 2022-08-01 17:54:59,323 - ['141.72.224.130'] - POST: http://wordpress2/wp-admin/install.php?step=2| content: b'weblog_title=Pascal+Wisch+You+were+trouble&user_name=jenny&admin_password=%29E9CoPI*sM%5EO3zpkjb&admin_password2=%29E9CoPI*sM%5EO3zpkjb&admin_email=jenny%40byom.de&Submit=Install+WordPress&language='
+{}
+INFO 2022-08-01 17:55:26,285 - INFO
+INFO 2022-08-01 17:55:26,288 - ['141.72.224.130'] - GET: http://wordpress3/| content: b''
+{}
+INFO 2022-08-01 17:55:34,172 - INFO
+INFO 2022-08-01 17:55:34,177 - ['141.72.224.130'] - GET: http://wordpress3/wp-admin/install.php| content: b''
+{}
+INFO 2022-08-01 17:55:34,345 - INFO
+INFO 2022-08-01 17:55:34,346 - ['141.72.224.130'] - GET: http://wordpress3/wp-includes/css/buttons.min.css?ver=5.0.1| content: b''
+{}
+INFO 2022-08-01 17:55:34,349 - INFO
+INFO 2022-08-01 17:55:34,350 - ['141.72.224.130'] - GET: http://wordpress3/wp-admin/css/install.min.css?ver=5.0.1| content: b''
+{}
+INFO 2022-08-01 17:55:34,419 - INFO
+INFO 2022-08-01 17:55:34,419 - ['141.72.224.130'] - GET: http://wordpress3/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1| content: b''
+{}
+INFO 2022-08-01 17:55:34,422 - INFO
+INFO 2022-08-01 17:55:34,423 - ['141.72.224.130'] - GET: http://wordpress3/wp-includes/css/dashicons.min.css?ver=5.0.1| content: b''
+{}
+INFO 2022-08-01 17:55:34,432 - INFO
+INFO 2022-08-01 17:55:34,433 - ['141.72.224.130'] - GET: http://wordpress3/wp-includes/js/jquery/jquery.js?ver=1.12.4| content: b''
+{}
+INFO 2022-08-01 17:55:34,435 - INFO
+INFO 2022-08-01 17:55:34,436 - ['141.72.224.130'] - GET: http://wordpress3/wp-includes/js/zxcvbn-async.min.js?ver=1.0| content: b''
+{}
+INFO 2022-08-01 17:55:34,460 - INFO
+INFO 2022-08-01 17:55:34,461 - ['141.72.224.130'] - GET: http://wordpress3/wp-admin/js/password-strength-meter.min.js?ver=5.0.1| content: b''
+{}
+INFO 2022-08-01 17:55:34,465 - INFO
+INFO 2022-08-01 17:55:34,465 - ['141.72.224.130'] - GET: http://wordpress3/wp-includes/js/underscore.min.js?ver=1.8.3| content: b''
+{}
+INFO 2022-08-01 17:55:34,494 - INFO
+INFO 2022-08-01 17:55:34,495 - ['141.72.224.130'] - GET: http://wordpress3/wp-includes/js/wp-util.min.js?ver=5.0.1| content: b''
+{}
+INFO 2022-08-01 17:55:34,503 - INFO
+INFO 2022-08-01 17:55:34,504 - ['141.72.224.130'] - GET: http://wordpress3/wp-admin/js/user-profile.min.js?ver=5.0.1| content: b''
+{}
+INFO 2022-08-01 17:55:34,510 - INFO
+INFO 2022-08-01 17:55:34,511 - ['141.72.224.130'] - GET: http://wordpress3/wp-admin/images/wordpress-logo.svg?ver=20131107| content: b''
+{}
+INFO 2022-08-01 17:55:34,709 - INFO
+INFO 2022-08-01 17:55:34,711 - ['141.72.224.130'] - GET: http://wordpress3/wp-includes/js/zxcvbn.min.js| content: b''
+{}
+INFO 2022-08-01 17:56:18,893 - INFO
+INFO 2022-08-01 17:56:18,902 - ['141.72.224.130'] - POST: http://wordpress3/wp-admin/install.php?step=2| content: b'weblog_title=Dropshipping+101&user_name=jenny&admin_password=%29E9CoPI*sM%5EO3zpkjb&pass1-text=%29E9CoPI*sM%5EO3zpkjb&admin_password2=%29E9CoPI*sM%5EO3zpkjb&admin_email=jenny%40byom.de&Submit=Install+WordPress&language='
+{}
+INFO 2022-08-01 18:01:13,507 - INFO
+INFO 2022-08-01 18:01:13,512 - ['141.72.224.130'] - GET: http://wordpress/| content: b''
+{'wordpress_test_cookie': ['WP%20Cookie%20check']}
