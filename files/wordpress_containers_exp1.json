@@ -1,11 +1,4 @@
-[       
-        {
-            "name":"wordpress",
-            "hostname": "wordpress",
-            "image": "wordpress:latest",
-            "url": "press.wordpress.0rn.de",
-            "volumes": "{{ docker_dir }}/wordpress2:/var/www/html"
-        },
+[
         {
             "name":"wordpress2",
             "hostname": "wordpress2",

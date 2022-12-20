@@ -10,7 +10,7 @@ output {
         hosts => ["http://elasticsearch:9200"]
         user => '{{ es_user }}'
         password => '{{ es_password }}'
-        index => "wordpress-honeypot-decoded"
+        index => "wordpress-honeypot-exp2"
     }
     stdout{codec => rubydebug}
 }

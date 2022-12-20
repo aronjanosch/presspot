@@ -10,7 +10,7 @@ import base64
 
 Log_Format = "%(levelname)s %(asctime)s - %(message)s"
 
-logfilename = datetime.datetime.now().strftime('mylogfile_%H_%M_%d_%m_%Y.log')
+logfilename = datetime.datetime.now().strftime('mylogfile_%d_%m_%Y_%H_%M.log')
 log_path = "/scripts/{filename}".format(filename = str(logfilename))
 abs_log_path = os.path.abspath(log_path)
 
@@ -36,6 +36,11 @@ def isBase64(s):
         return base64.b64encode(base64.b64decode(s)) == s
     except Exception:
         return False
+
+def encode_base64(s):
+    encoded = str(s).encode('ascii')
+    base64_str = base64.b64encode(encoded)
+    return base64_str
 
 def b64_or_str(d):
     if isinstance(d, str):
@@ -107,25 +112,29 @@ def req2dict_old(request):
 def resp2dict(resp):
     return {
         'status_code': resp.status_code,
-        #'content': resp.content,
+        #'content': encode_base64(resp.content),
         'cookies': multi2dict(resp.cookies),
         #'headers': multi2dict(resp.headers)
     }
+    
+def plugin_query_check(flow: http.HTTPFlow):
+    if 'plugins' in flow.request.path:
+        flow.response.status_code = 200
 
 
 def request(flow: http.HTTPFlow) -> None:
 #     # pretty_host takes the "Host" header of the request into account,
 #     # which is useful in transparent mode where we usually only have the IP
 #     # otherwise.
-
+        
     for item in container_json:
         if flow.request.pretty_host == item['url']:
             flow.request.host = item['hostname']
             flow.request.host_header = item['url']
 
-    if flow.request.pretty_host == "press.wordpress.0rn.de":
-        flow.request.host = "wordpress"
-        flow.request.host_header = "press.wordpress.0rn.de"
+    if 'plugins' in flow.request.path:
+        flow.response.status_code = 200
+
 #     else:
 #         flow.request.host = "wordpress"
         
@@ -133,6 +142,8 @@ def request(flow: http.HTTPFlow) -> None:
 
 
 def response(flow: http.HTTPFlow) -> None:
+    if 'plugins' in flow.request.path:
+        flow.response.status_code = 200
 
     req_log = {
         'request': req2dict(flow.request),
@@ -140,12 +151,12 @@ def response(flow: http.HTTPFlow) -> None:
         }
     req_log['request']['IP'] = req_log['request']['headers']['X-Real-IP']
     
-    ctx.log.info(req_log['request']['content'])
-
+    #ctx.log.info(req_log['request']['content'])
 
     request = req2dict_old(flow.request)
     
     json_logger.info('INFO', extra = req_log)
+    print('logger fired')
 
     firstline = str(request['headers']['X-Real-IP']) + " - " + str(request['method']) + ": " + str(request['url']) + "| content: " + str(request['content'])
     secondline = str(request['cookies'])
