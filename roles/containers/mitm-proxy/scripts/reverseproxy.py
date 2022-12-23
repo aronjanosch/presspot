@@ -38,6 +38,8 @@ def isBase64(s):
         return False
 
 def encode_base64(s):
+    if not isinstance(s, str):
+        return "Bytestring"
     encoded = str(s).encode('ascii')
     base64_str = base64.b64encode(encoded)
     return base64_str
@@ -112,9 +114,9 @@ def req2dict_old(request):
 def resp2dict(resp):
     return {
         'status_code': resp.status_code,
-        #'content': encode_base64(resp.content),
+        'content': encode_base64(resp.content),
         'cookies': multi2dict(resp.cookies),
-        #'headers': multi2dict(resp.headers)
+        'headers': multi2dict(resp.headers)
     }
     
 def plugin_query_check(flow: http.HTTPFlow):
@@ -132,9 +134,6 @@ def request(flow: http.HTTPFlow) -> None:
             flow.request.host = item['hostname']
             flow.request.host_header = item['url']
 
-    if 'plugins' in flow.request.path:
-        flow.response.status_code = 200
-
 #     else:
 #         flow.request.host = "wordpress"
         
@@ -142,14 +141,22 @@ def request(flow: http.HTTPFlow) -> None:
 
 
 def response(flow: http.HTTPFlow) -> None:
-    if 'plugins' in flow.request.path:
+    if 'plugins' in flow.request.path and flow.response.status_code == 404:
         flow.response.status_code = 200
-
-    req_log = {
+        
+        req_log = {
         'request': req2dict(flow.request),
         'response': resp2dict(flow.response)
         }
-    req_log['request']['IP'] = req_log['request']['headers']['X-Real-IP']
+        req_log['request']['IP'] = req_log['request']['headers']['X-Real-IP']
+        req_log['response']['modified'] = True
+        req_log['response']['org_status_code'] = 404
+    else:
+        req_log = {
+            'request': req2dict(flow.request),
+            'response': resp2dict(flow.response)
+            }
+        req_log['request']['IP'] = req_log['request']['headers']['X-Real-IP']
     
     #ctx.log.info(req_log['request']['content'])
 

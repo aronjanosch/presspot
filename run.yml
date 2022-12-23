@@ -17,6 +17,19 @@
       tags:
         - portainer
         - containers
+
+    - role: containers/elk
+      tags:
+        - elk
+        - containers
+      when: enable_elk
+
+    - role: containers/mitm-proxy
+      tags:
+        - mitm
+        - proxies
+        - containers
+      when: enable_mitm
       
     - role: containers/nginx-proxy
       tags:
@@ -38,24 +51,11 @@
         - containers
       when: enable_rproxy
     
-    - role: containers/mitm-proxy
-      tags:
-        - mitm
-        - proxies
-        - containers
-      when: enable_mitm
-    
     - role: containers/wordpress
       tags:
         - wordpress
         - containers
       when: enable_wordpress
-
-    - role: containers/elk
-      tags:
-        - elk
-        - containers
-      when: enable_elk
     
     - role: containers/wp
       tags:

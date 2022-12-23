@@ -5,4 +5,4 @@ RUN pip3 install python-logstash
 
 RUN mkdir -p /scripts
 
-CMD /usr/local/bin/mitmdump --mode reverse:http://wordpress2 --showhost --listen-host=0.0.0.0 --listen-port=8080 --set block_global=false --ssl-insecure -s /scripts/reverseproxy.py
+CMD /usr/local/bin/mitmdump --showhost --listen-host=0.0.0.0 --listen-port=8080 --set block_global=false --ssl-insecure -s /scripts/reverseproxy.py

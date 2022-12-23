@@ -1,0 +1,12 @@
+---
+- name: Copy script
+  ansible.builtin.copy:
+    src: roles/containers/mitm-proxy/scripts/reverseproxy.py
+    dest: "{{ docker_dir }}/mitm/reverseproxy.py"
+
+
+# - name: restart mitm
+#   docker_container:
+#     name: mitm
+#     image: mitmproxy-logger:ex4
+#     restart: true
