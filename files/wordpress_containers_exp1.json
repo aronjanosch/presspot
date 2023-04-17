@@ -24,14 +24,14 @@
             "name":"wordpress5",
             "hostname": "wordpress5",
             "image": "wordpress:5.0.1",
-            "url": "bl1.blog.0rn.de",
+            "url": "wp5.blog.0rn.de",
             "volumes": "{{ docker_dir }}/wordpress5:/var/www/html"
         },
         {
             "name":"wordpress6",
             "hostname": "wordpress6",
             "image": "wordpress:4.7",
-            "url": "shop.blog.0rn.de",
+            "url": "bl1.blog.0rn.de",
             "volumes": "{{ docker_dir }}/wordpress6:/var/www/html"
         },
         {
